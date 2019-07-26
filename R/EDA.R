@@ -2,6 +2,8 @@
 # 安装依赖库
 install.packages('ggplot2', dependencies = TRUE)
 install.packages('ggthemes', dependencies = TRUE)
+## 参考文档 
+## https://www.jianshu.com/p/0c25e1904026
 
 # ----------------------------------------------------
 # lab1:绘图并进行level排序
@@ -9,11 +11,11 @@ setwd('C:/Users/01/Downloads')
 library(ggplot2)
 data = read.csv('reddit.csv')
 str(data)   # str表示structure，对数据结构进行描述
-levels(data$age.range)
+levels(data$age.range)   # level表示等级，分类标签去重后的集合
 
 qplot(data=data, x=age.range)   # 绘图
 
-## 建立因子
+## 两种方法建立因子并排序（x轴排序）
 data$age.range = ordered(data$age.range, levels=c('Under 18', '18-24', '25-34', '35-44', '45-54', '55-64', '65 of Above'))
 data$age.range = factor(data$age.range, levels=c('Under 18', '18-24', '25-34', '35-44', '45-54', '55-64', '65 of Above'), order=T)
 qplot(data=data, x=age.range)
@@ -31,11 +33,16 @@ ggplot(aes(x = dob_day), data = pf) + geom_histogram(binwidth = 1) + scale_x_con
 
 ## 一页多图facet
 qplot(data=pf, x=dob_day) + scale_x_continuous(breaks=1:31) + facet_wrap(~dob_month, ncol=4)
+qplot(data=subset(pf, !is.na(gender)), x=dob_day) + scale_x_continuous(breaks=1:31) + facet_wrap(~gender, ncol=4)   #去除NA值,在原始数据中把gender的NA去掉
+qplot(data=na.omit(pf), x=dob_day) + scale_x_continuous(breaks=1:31) + facet_wrap(~gender, ncol=4)   #去除NA值,在原始数据中把所有NA去掉
 
 ## 调整bin width（bar宽）
-qplot(data=pf, x=friend_count) + scale_x_continuous(limits=c(0,1000) )
+qplot(data=pf, x=friend_count) + scale_x_continuous(limits=c(0, 1000))   # x轴显示范围
+qplot(data=pf, x=friend_count, binwidth=25) + scale_x_continuous(limits=c(0, 1000)) + scale_x_continuous(limits=c(0, 1000), breaks=seq(0, 1000, 50))  # bin width
 
-
+## 建立数据统计表
+table(pf$gender)
+by(pf$friend_count, pf$gender, summary)   #第一个参数是变量，第二个是分类依据，第三个是返回描述
 
 
 
