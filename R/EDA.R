@@ -9,11 +9,12 @@ install.packages('gridExtra', dependencies = TRUE)   # 一个画布上显示
 install.packages('dplyr')   # 从来对数据进行分组统计
 install.packages('alr3')   # 用来进行回归的数据集
 install.packages('reshape2')   # 用来数据框数据透视
+install.packages('GGally') # 用来绘制scatterplot matrix
 
 # =========================================================
 # lab1:绘频数图并进行level排序
 # =========================================================
-setwd('C:/Users/01/Downloads')
+setwd(''C:/Users/01/Desktop/CodeMyself/R'')
 library(ggplot2)
 data = read.csv('reddit.csv')
 str(data)   # str表示structure，对数据结构进行描述
@@ -28,9 +29,9 @@ qplot(data = data, x = age.range)
 
 
 # =========================================================
-# lab2:单变量分析
+# lab2:单变量分析，facebook数据
 # =========================================================
-setwd('C:/Users/01/Downloads')
+setwd('C:/Users/01/Desktop/CodeMyself/R')
 library(ggthemes)
 library(ggplot2)
 pf = read.csv('pseudo_facebook.tsv', sep = '\t')
@@ -90,9 +91,9 @@ sum(pf$mobile_check_in =  = 0)/length(pf$mobile_check_in)   # 计算每个分类
 
 
 # =========================================================
-# lab3:双变量分析
+# lab3:双变量分析，facebook数据
 # =========================================================
-setwd('C:/Users/01/Downloads')
+setwd('C:/Users/01/Desktop/CodeMyself/R')
 library(ggplot2)
 pf  =  read.csv('pseudo_facebook.tsv', sep = '\t')
 
@@ -162,9 +163,9 @@ grid.arrange(p1, p2, p3, ncol = 1)
 
 
 # =========================================================
-# lab4:多变量分析
+# lab4-1:多变量分析，facebook数据
 # =========================================================
-setwd('C:/Users/01/Downloads')
+setwd('C:/Users/01/Desktop/CodeMyself/R')
 library(ggplot2)
 library(dplyr)
 pf  =  read.csv('pseudo_facebook.tsv', sep = '\t')
@@ -186,12 +187,12 @@ pf.fc_by_age_gender <- arrange(ungroup(pf.fc_by_age_gender), age, gender)   #sum
 
 ggplot(data = pf.fc_by_age_gender, aes(x = age, y = median_friend_count)) + geom_line(aes(color = gender))
 
-### 数据透视：数据框长和宽格式转换（long/wide cast）
+### 数据透视：数据框长数据和宽数据格式转换（long/wide cast和melt，melt见后文）
 library(reshape2)
-pf.fc_by_age_gender   # 转换前
+pf.fc_by_age_gender   # 转换前—长数据
 pf.fc_by_age_gender.wide <- dcast(pf.fc_by_age_gender,    # dcast表示返回dataframe，如果是array则是acast
                                   age ~ gender,   # ~之前是保持不变的变量，后面是需要分列的变量
-                                  value.var = 'median_friend_count')   # 转换后
+                                  value.var = 'median_friend_count')   # 转换后-宽数据
 
 ### 男女比例折线图
 ggplot(data = pf.fc_by_age_gender.wide, aes(x = age, y = female/male,)) + 
@@ -216,3 +217,48 @@ ggplot(data = subset(pf, tenure >= 1), aes(x = round(tenure/7) * 7, y = friendsh
 
 ggplot(data = subset(pf, tenure >= 1), aes(x = tenure, y = friendships_initiated / tenure)) +
   geom_smooth(aes(color = year_joined.bucket))
+
+# =========================================================
+# lab4-2:多变量分析，酸奶数据
+# =========================================================
+setwd('C:/Users/01/Desktop/CodeMyself/R')
+library(ggplot2)
+yo  =  read.csv('yogurt.csv')
+str(yo)
+yo$id <- factor(yo$id)
+
+ggplot(data = yo, aes(x = price)) + geom_histogram(binwidth = 10, fill = 'orange')
+
+## 新增一列合计
+yo <- transform(yo, all.perchase = strawberry + blueberry + pina.colada + plain + mixed.berry)   # 方法一
+yo$all.perchase <- yo$strawberry + yo$blueberry + yo$pina.colada + yo$plain + yo$mixed.berry   # 方法二
+
+## 价格-时间散点图
+ggplot(data = yo, aes(x = time, y = price)) + geom_jitter(alpha = 1/4, shape = 21)
+
+## 随机抽取16个id进行进一步考察
+set.seed(4230)
+sample.ids <- sample(levels(yo$id), 16)
+
+ggplot(aes(x = time, y = price), data = subset(yo, id %in% sample.ids)) +   # %in% 类似于python isin()
+  facet_wrap(~id) + geom_line() + geom_point(aes(size = all.perchase), pch = 5)   # pch和shape一样，用来表示点的形状
+
+## 创建散点图矩阵
+library(GGally)
+theme_set(theme_minimal(20))
+set.seed(1836)
+pf_subset <- pf[,c(10:15)]
+ggpairs(pf_subset[sample.int(nrow(pf_subset),10),])
+
+## 基因数据热度图
+nci <- read.table('nci.tsv')
+colnames(nci) <- c(1:64)   # 修改列名
+
+library(reshape2)
+nci.long.samp <- melt(as.matrix(nci[1:200, ]))
+names(nci.long.samp) <- c('gene','case','value')
+
+ggplot(aes(y = gene, x = case, fill = value),
+       data = nci.long.samp) +
+  geom_tile()+
+  scale_fill_gradientn(colors = colorRampPalette(c('blue', 'red'))(100))
