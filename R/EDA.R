@@ -54,7 +54,7 @@ qplot(data = pf, x = friend_count, binwidth = 25) + scale_x_continuous(limits = 
 table(pf$gender)
 by(pf$friend_count, pf$gender, summary)   #第一个参数是变量，第二个是分类依据，第三个是返回描述
 
-## 一张画布多张图，坐标值转换
+## 一张画布多张图，坐标转换
 library(gridExtra)
 ### 方法一：
 p1 <- qplot(data = pf, x = friend_count)
@@ -218,6 +218,7 @@ ggplot(data = subset(pf, tenure >= 1), aes(x = round(tenure/7) * 7, y = friendsh
 ggplot(data = subset(pf, tenure >= 1), aes(x = tenure, y = friendships_initiated / tenure)) +
   geom_smooth(aes(color = year_joined.bucket))
 
+
 # =========================================================
 # lab4-2:多变量分析，酸奶数据
 # =========================================================
@@ -262,3 +263,59 @@ ggplot(aes(y = gene, x = case, fill = value),
        data = nci.long.samp) +
   geom_tile()+
   scale_fill_gradientn(colors = colorRampPalette(c('blue', 'red'))(100))
+
+# =========================================================
+# lab5:多变量分析，酸奶数据
+# =========================================================
+library(ggplot2)
+data(diamonds)   # 加载ggplot中的diamonds数据集
+
+ggplot(aes(x = carat, y = price), data = diamonds) +
+  scale_x_continuous(lim = c(0, quantile(diamonds$carat, 0.99))) +
+  scale_y_continuous(lim = c(0, quantile(diamonds$price, 0.99))) +
+  geom_point(fill = I('#f97420'), color = I('black'), shape = 21)   # I表示AsIs，一种数据格式，是什么样就是什么样
+
+## 安装相应包
+install.packages('scales')
+install.packages('memisc')
+install.packages('lattice')
+install.packages('MASS')
+install.packages('car')
+library(ggplot2)
+library(GGally)
+library(scales)
+library(memisc)
+
+set.seed(20022012)
+diamond_samp <- diamonds[sample(1:length(diamonds$price), 10000), ]
+ggpairs(diamond_samp, 
+        lower = list(continuous = wrap("points", shape = I('.'))),
+        upper = list(combo = wrap("box", outlier.shape = I('.'))))
+
+## 坐标转换
+ggplot(aes(x = carat, y = price), data = diamonds) +
+  scale_y_continuous(trans = log10_trans()) +
+  geom_point(fill = I('#f97420'), color = I('black'), shape = 21)
+
+cuberoot_trans = function() trans_new('cuberoot',
+                                     transform = function(x) x^(1/3),
+                                     inverse = function(x) x^3)   # 返回立方根的函数
+
+## 加入纯度作为颜色，坐标进行三次根号转换，添加透明度
+ggplot(aes(carat, price, color = clarity), data = diamonds) +   geom_point(alpha = 0.2, size = 0.75, position = 'jitter') + 
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Clarity', reverse = T,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  scale_x_continuous(trans = cuberoot_trans(), limits = c(0.2, 3), breaks = c(0.2, 0.5, 1, 2, 3)) + 
+  scale_y_continuous(trans = log10_trans(), limits = c(350, 15000), breaks = c(350, 1000, 5000, 10000, 15000)) +
+  ggtitle('Price (log10) by Cube-Root of Carat')
+
+## 回归
+m1 <- lm(I(log(price)) ~ I(carat^(1/3)), data = diamonds)   # I函数表示把值转换后再进行回归，而不是把计算公式当成回归模型的一部分
+m2 <- update(m1, ~ . + carat)   # 添加更多变量
+m3 <- update(m2, ~ . + cut)
+m4 <- update(m3, ~ . + color)
+m5 <- update(m4, ~ . + clarity)
+mtable(m1, m2, m3, m4, m5, sdigits = 3)   # 设置小数点
+
+
