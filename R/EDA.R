@@ -14,7 +14,7 @@ install.packages('GGally') # 用来绘制scatterplot matrix
 # =========================================================
 # lab1:绘频数图并进行level排序
 # =========================================================
-setwd(''C:/Users/01/Desktop/CodeMyself/R'')
+setwd('/Users/JoeCheung/Desktop/CodeMyself/R')
 library(ggplot2)
 data = read.csv('reddit.csv')
 str(data)   # str表示structure，对数据结构进行描述
@@ -31,7 +31,7 @@ qplot(data = data, x = age.range)
 # =========================================================
 # lab2:单变量分析，facebook数据
 # =========================================================
-setwd('C:/Users/01/Desktop/CodeMyself/R')
+setwd('/Users/JoeCheung/Desktop/CodeMyself/R')
 library(ggthemes)
 library(ggplot2)
 pf = read.csv('pseudo_facebook.tsv', sep = '\t')
@@ -93,7 +93,7 @@ sum(pf$mobile_check_in =  = 0)/length(pf$mobile_check_in)   # 计算每个分类
 # =========================================================
 # lab3:双变量分析，facebook数据
 # =========================================================
-setwd('C:/Users/01/Desktop/CodeMyself/R')
+setwd('/Users/JoeCheung/Desktop/CodeMyself/R')
 library(ggplot2)
 pf  =  read.csv('pseudo_facebook.tsv', sep = '\t')
 
@@ -165,7 +165,7 @@ grid.arrange(p1, p2, p3, ncol = 1)
 # =========================================================
 # lab4-1:多变量分析，facebook数据
 # =========================================================
-setwd('C:/Users/01/Desktop/CodeMyself/R')
+setwd('/Users/JoeCheung/Desktop/CodeMyself/R')
 library(ggplot2)
 library(dplyr)
 pf  =  read.csv('pseudo_facebook.tsv', sep = '\t')
@@ -222,7 +222,7 @@ ggplot(data = subset(pf, tenure >= 1), aes(x = tenure, y = friendships_initiated
 # =========================================================
 # lab4-2:多变量分析，酸奶数据
 # =========================================================
-setwd('C:/Users/01/Desktop/CodeMyself/R')
+setwd('/Users/JoeCheung/Desktop/CodeMyself/R')
 library(ggplot2)
 yo  =  read.csv('yogurt.csv')
 str(yo)
