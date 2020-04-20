@@ -4,10 +4,10 @@
 - [Hadoop](#2-hadoop)
 - [SSH](#3-ssh)
 
-# 1. Bash
+## 1. Bash
 Source: <https://www.cs.cmu.edu/~15131/f17/>
 
-## 1.1 Command
+### 1.1 Command
 * ls / tree: -a 显示所有, a代表all; -l显示详细内容（权限）
 * cat / less <filename>: 显示文件内容; /banana表示查抄; 按q键退出
 * cp <source> <destination>: 拷贝文件
@@ -28,24 +28,24 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
 * $: 把输出变成输入的一部分, 类比pipe; touch myfile-$(date +%s).txt
 * make
 
-## 1.2 Points
+### 1.2 Points
 * setting variables:
     - myvariable="hello”: 不可被其他程序引用。获得变量值用$, 例如echo $myvariable,  echo lone${another_var}s    
     - export anothervar="some string”: 可被外部或者其他程序引用
     - permission: <https://www.cnblogs.com/peida/archive/2012/11/29/2794010.html>
 * {} 生成序列: mv {1.txt,2.txt}; mv Bash/2{.txt,}
 
-# 2. Hadoop
-## 2.1 hdfs
+## 2. Hadoop
+### 2.1 hdfs
 * hdfs dfs -cat fileName
 * hdfs dfs -mkdir msia
 * hdfs dfs -ls
 * Hdfs dfs -copyFromLocal <localdir> <serverdir>
 
-## 2.2 MapReduce
+### 2.2 MapReduce
 * ant: compile Java file, in the dir of build.xml
 
-## 2.3 Example - 1st Homework
+### 2.3 Example - 1st Homework
 1. build and compile java code
 ant
 2. mkdir in hdfs  
@@ -58,23 +58,23 @@ ant
     * hdfs dfs -ls wc/output  
     * hdfs dfs -cat wc/output part-00000   
 
-# 3. SSH
-## 3.1 ssh connection without entering password
+## 3. SSH
+### 3.1 ssh connection without entering password
 * eval \`ssh-agent\`  
 * ssh-add 
 
-## 3.2 Add SSH key to the server, so as to skip password
+### 3.2 Add SSH key to the server, so as to skip password
 * ssh-copy-id -i .ssh/id_rsa.pub  username@192.168.x.xxx
 
-## 3.3 Remote server connection
+### 3.3 Remote server connection
 * ssh zzu8431@wolf.analytics.private
 * ssh zzu8431@msia423.analytics.northwestern.edu
 * ssh -T git@github.com
 
-## 3.4 SCP - secure copy
+### 3.4 SCP - secure copy
 * scp [OPTION] [user@]Local host: file1 [user@]Remote host: file2
 
-## 3.5 additional tutor
+### 3.5 additional tutor
 * <https://meineke.github.io/workflows/>   # TA Session
 * <https://blog.csdn.net/xlgen157387/article/details/50282483>   # Server Config (Renaming)
 * <https://blog.csdn.net/liu_qingbo/article/details/78383892>   # SSH key config
