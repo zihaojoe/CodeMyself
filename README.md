@@ -30,7 +30,7 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
 * {} 生成序列: mv {1.txt,2.txt}; mv Bash/2{.txt,}
 
 # 2. Hadoop
-## 2.1hdfs
+## 2.1 hdfs
 * hdfs dfs –cat fileName
 * hdfs dfs –mkdir msia
 * hdfs dfs -ls
