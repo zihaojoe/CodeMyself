@@ -1,0 +1,19 @@
+staff:
+  - id: jzimmerm
+    domain: andrew
+Josh Zimmerman
+  - id: jxc
+    domain: cs
+Jacobo Carrasquel
+  - id: nmunson
+    domain: andrew
+Nick Munson
+  - id: jezimmer
+    domain: andrew
+Jake Zimmerman
+  - id: dringwal
+    domain: andrew
+Dan Ringwalt
+  - id: mjmurphy
+    domain: andrew
+Michael Murphy
