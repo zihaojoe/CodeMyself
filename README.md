@@ -79,3 +79,24 @@ ant
 * <https://blog.csdn.net/xlgen157387/article/details/50282483>   # Server Config (Renaming)
 * <https://blog.csdn.net/liu_qingbo/article/details/78383892>   # SSH key config
 
+## 4. Git
+* git init
+* git remote add origin git@github.com:michaelliao/learngit.git
+* git clone git@github.com:michaelliao/learngit.git
+
+* git add readme.txt
+* git commit -m "wrote a readme file"   
+    
+* git push origin master
+* git pull origin master    
+     
+* git remote -v   # 查看远程仓库信息
+* git remote rm origin   # 移除远程仓库信息    
+       
+* git checkout -b dev   # -b means create and switch to that branch (git branch dev; git checkout dev)
+* git branch   # check the branches
+
+## 5. Conda
+* conda/source activate xxxEnv
+
+
