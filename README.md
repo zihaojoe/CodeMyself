@@ -40,7 +40,7 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
 * hdfs dfs -cat fileName
 * hdfs dfs -mkdir msia
 * hdfs dfs -ls
-* Hdfs dfs -copyFromLocal <localdir> <serverdir>
+* hdfs dfs -copyFromLocal <localdir> <serverdir>
 
 ### 2.2 MapReduce
 * ant: compile Java file, in the dir of build.xml
