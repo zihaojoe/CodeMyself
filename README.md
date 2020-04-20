@@ -43,14 +43,14 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
 1. build and compile java code
 ant
 2. mkdir in hdfs  
-* hdfs dfs -mkdir wc   
-* hdfs dfs -mkdir wc/input   
-* hdfs dfs -copyFromLocal text.txt wc/input   
+    * hdfs dfs -mkdir wc   
+    * hdfs dfs -mkdir wc/input   
+    * hdfs dfs -copyFromLocal text.txt wc/input   
 3. run local(linux system) java using yarn [hdfs input dir] [hdfs output dir]  # output folder should not exist previously   
-* yarn jar WordCount.jar /user/zzu8431/wc/input /user/zzu8431/wc/output   
+    * yarn jar WordCount.jar /user/zzu8431/wc/input /user/zzu8431/wc/output   
 4. check output  
-* hdfs dfs -ls wc/output  
-* hdfs dfs -cat wc/output part-00000   
+    * hdfs dfs -ls wc/output  
+    * hdfs dfs -cat wc/output part-00000   
 
 # 3. SSH
 ## 3.1 ssh connection without entering password
