@@ -2,24 +2,24 @@
 Source: <https://www.cs.cmu.edu/~15131/f17/>
 
 ## 1.1 Command
-* ls / tree: -a 显示所有, a代表all；-l显示详细内容（权限）
-* cat / less <filename>: 显示文件内容；/banana表示查抄；按q键退出
+* ls / tree: -a 显示所有, a代表all; -l显示详细内容（权限）
+* cat / less <filename>: 显示文件内容; /banana表示查抄; 按q键退出
 * cp <source> <destination>: 拷贝文件
 * mv <source> <destination>: 移动文件
-* rm <filename>: 删除文件；rm -r folder2/ : 删除文件夹
+* rm <filename>: 删除文件; rm -r folder2/ : 删除文件夹
 * mkdir <directory>: 建立路径（文件夹）
 * touch <file>: 建立空文件
 * echo <text>: 打印文本
-* fg: foreground任务。例如fg 1；用jobs查看当前任务。
+* fg: foreground任务。例如fg 1; 用jobs查看当前任务。
 * chmod及权限: <https://www.cnblogs.com/peida/archive/2012/11/29/2794010.html>
 * vim: https://www.runoob.com/linux/linux-vim.html
 * |: 管道操作
 * grep(global reg ex print) / sed(stream editor): 正则表达式和自动文件操作
 * &gt;&gt;: append stdout; >: overwrite stdout; 2>, 2>>: stderr
-    - cat asdf hello.txt 2>&1 > alloutput.txt:把2句柄赋值传递给1句柄的地址（0是stdin, 1是stdout, 2是stderr）；功能为把stderr发送到stdout, 然后把stdout发送到文件
+    - cat asdf hello.txt 2>&1 > alloutput.txt:把2句柄赋值传递给1句柄的地址（0是stdin, 1是stdout, 2是stderr）; 功能为把stderr发送到stdout, 然后把stdout发送到文件
     - 2>&1 要写到后面: ls a 1>&2 2> b.txt; ls a > b.txt 2>&1
     - /dev/null: 不打印任何东西, 可以理解为垃圾桶位置
-* $: 把输出变成输入的一部分, 类比pipe；touch myfile-$(date +%s).txt
+* $: 把输出变成输入的一部分, 类比pipe; touch myfile-$(date +%s).txt
 * make
 
 ## 1.2 Points
@@ -31,8 +31,8 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
 
 # 2. Hadoop
 ## 2.1 hdfs
-* hdfs dfs –cat fileName
-* hdfs dfs –mkdir msia
+* hdfs dfs -cat fileName
+* hdfs dfs -mkdir msia
 * hdfs dfs -ls
 * Hdfs dfs -copyFromLocal <localdir> <serverdir>
 
