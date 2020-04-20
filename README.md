@@ -53,22 +53,22 @@ ant
 * hdfs dfs -cat wc/output part-00000   
 
 # SSH
-# ssh connection without entering password
+## ssh connection without entering password
 * eval `ssh-agent`  
 * ssh-add 
 
-# SSH添加到远程服务器，另一种免去输入密码的方式
+## Add SSH key to the server, so as to skip password
 * ssh-copy-id -i .ssh/id_rsa.pub  username@192.168.x.xxx
 
-# remote server connection
+## remote server connection
 * ssh zzu8431@wolf.analytics.private
 * ssh zzu8431@msia423.analytics.northwestern.edu
 * ssh -T git@github.com
 
-# SCP - secure copy
+## SCP - secure copy
 * scp [OPTION] [user@]Local host: file1 [user@]Remote host: file2
 
-# additional tutor
+## additional tutor
 * <https://meineke.github.io/workflows/>   # TA Session
 * <https://blog.csdn.net/xlgen157387/article/details/50282483>   # Server Config (Renaming)
 * <https://blog.csdn.net/liu_qingbo/article/details/78383892>   # SSH key config
