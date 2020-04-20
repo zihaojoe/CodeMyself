@@ -13,7 +13,7 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
 * fg: foreground任务。例如fg 1；用jobs查看当前任务。
 * chmod及权限: <https://www.cnblogs.com/peida/archive/2012/11/29/2794010.html>
 * vim: https://www.runoob.com/linux/linux-vim.html
-* |: 管道操作
+* \|: 管道操作
 * grep(global reg ex print) / sed(stream editor): 正则表达式和自动文件操作
 * >>: append stdout; >: overwrite stdout; 2>, 2>>: stderr
     - cat asdf hello.txt 2>&1 > alloutput.txt:把2句柄赋值传递给1句柄的地址（0是stdin, 1是stdout, 2是stderr）；功能为把stderr发送到stdout, 然后把stdout发送到文件
