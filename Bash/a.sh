@@ -1,1 +1,3 @@
-echo Hello world!
+#!/usr/bin/env bash
+
+echo hello world
