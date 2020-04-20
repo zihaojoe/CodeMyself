@@ -91,11 +91,13 @@ ant
 ### branch
 * git checkout -b dev   # -b means create and switch to that branch (git branch dev; git checkout dev)
 * git branch   # check the branches
+* git push -u origin master; git push --set-upstream origin master: 如果当前分支与多个远程主机存在追踪关系, 那么git push --set-upstream origin master(git push -u origin master 省略形式)将本地的master分支推送到origin主机(--set-upstream选项会指定一个默认主机), 同时指定该主机为默认主机, 后面使用可以不加任何参数使用git push
 ### github
 * git push origin master
 * git pull origin master    
 * git remote -v   # 查看远程仓库信息
 * git remote rm origin   # 移除远程仓库信息
+
 
 ## 5. Conda
 * conda/source activate xxxEnv
