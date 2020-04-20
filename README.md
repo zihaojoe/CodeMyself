@@ -54,7 +54,7 @@ ant
 
 # SSH
 ## ssh connection without entering password
-* eval `ssh-agent`  
+* eval \`ssh-agent\`  
 * ssh-add 
 
 ## Add SSH key to the server, so as to skip password
