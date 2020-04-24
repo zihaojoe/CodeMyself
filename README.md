@@ -83,36 +83,43 @@ ant
 * <https://blog.csdn.net/liu_qingbo/article/details/78383892>   # SSH key config
 
 ## 4. Git
-### basic 
+### 4.1 basic 
 * git init
 * git remote add origin git@github.com:michaelliao/learngit.git
 * git clone git@github.com:michaelliao/learngit.git
 * git add readme.txt
-* git commit -m "wrote a readme file"      
-### branch
+* git commit -m "wrote a readme file" 
+
+### 4.2 branch
 * git checkout -b dev   # -b means create and switch to that branch (git branch dev; git checkout dev)
 * git branch   # check the branches
-* git push -u origin master; git push --set-upstream origin master: 如果当前分支与多个远程主机存在追踪关系, 那么git push --set-upstream origin master(git push -u origin master 省略形式)将本地的master分支推送到origin主机(--set-upstream选项会指定一个默认主机), 同时指定该主机为默认主机, 后面使用可以不加任何参数使用git push
-### github
+* git push -u origin master; git push --set-upstream origin master: 如果当前分支与多个远程主机存在追踪关系, 那么git push --set-upstream origin master(git push -u origin master 省略形式)将本地的master分支推送到origin主机(--set-upstream选项会指定一个默认主机), 同时指定该主机为默认主机, 后面使用可以不加任何参数使用git push    
+
+### 4.3 github
 * git push origin master
 * git pull origin master    
 * git remote -v   # 查看远程仓库信息
 * git remote rm origin   # 移除远程仓库信息
 
 ## 5. Docker
-### Build the image
-docker build -f app/Dockerfile -t pennylane .   # (创建一个tag为pennylane)的镜像    
-### Run the container  
-docker run -p 5000:5000 --name test pennylane   # (创建并run一个name为test的容器)    
-### Restart and kill the docker/container     
-docker restart 777c866f0cbc       
-docker start 777c866f0cbc   # 启动容器       
-docker attach 777c866f0cbc   # 进入容器(命令行模式，前提是用-it去run容器)    
-docker kill test   
-### Others 
-docker ps -a   # 查看过去执行过的docker     
-docker image/container rm name   # 删除镜像/容器    
-docker run -不同参数 <https://blog.csdn.net/qq_19381989/article/details/102781663>
+### 5.1 Build the image
+* docker images   # 查看所有image
+* docker build -f app/Dockerfile -t pennylane .   # (创建一个tag为pennylane)的镜像  
+
+### 5.2 Run the container  
+* docker run -p 5000:5000 --name test pennylane   # (创建并run一个name为test的容器)    
+
+### 5.3 Restart and kill the docker/container     
+* docker restart 777c866f0cbc       
+* docker start 777c866f0cbc   # 启动容器       
+* docker attach 777c866f0cbc   # 进入容器(命令行模式，前提是用-it去run容器)    
+* docker stop test  
+* docker kill test    
+
+### 5.4 Others 
+* docker ps -a   # 查看过去执行过的docker     
+* docker image/container rm name   # 删除镜像/容器    
+* docker run -不同参数 <https://blog.csdn.net/qq_19381989/article/details/102781663>
 
 
 ## 6. Conda
