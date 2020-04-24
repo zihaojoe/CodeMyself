@@ -98,8 +98,23 @@ ant
 * git remote -v   # 查看远程仓库信息
 * git remote rm origin   # 移除远程仓库信息
 
+## 5. Docker
+**Build the image**   
+docker build -f app/Dockerfile -t pennylane .   # (创建一个tag为pennylane)的镜像    
+**Run the container**   
+docker run -p 5000:5000 --name test pennylane   # (创建并run一个name为test的容器)    
+**Restart and kill the docker/container**      
+docker restart 777c866f0cbc       
+docker start 777c866f0cbc   # 启动容器       
+docker attach 777c866f0cbc   # 进入容器(命令行模式，前提是用-it去run容器)    
+docker kill test   
+**Others**   
+docker ps -a   # 查看过去执行过的docker     
+docker image/container rm name   # 删除镜像/容器    
+docker run -不同参数 <https://blog.csdn.net/qq_19381989/article/details/102781663>
 
-## 5. Conda
+
+## 6. Conda
 * conda/source activate xxxEnv
 
 
