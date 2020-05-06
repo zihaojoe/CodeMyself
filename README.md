@@ -38,6 +38,7 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
     - permission: <https://www.cnblogs.com/peida/archive/2012/11/29/2794010.html>
 * {} 生成序列: mv {1.txt,2.txt}; mv Bash/2{.txt,}
 
+
 ## 2. Hadoop
 ### 2.1 hdfs
 * hdfs dfs -cat fileName
@@ -61,13 +62,14 @@ ant
     * hdfs dfs -ls wc/output  
     * hdfs dfs -cat wc/output part-00000   
 
-## 3. SSH
+
+## 3. SSH & Server
 ### 3.1 ssh connection without entering password
 * eval \`ssh-agent\`  
 * ssh-add 
 
 ### 3.2 Add SSH key to the server, so as to skip password
-* ssh-copy-id -i .ssh/id_rsa.pub  username@192.168.x.xxx
+* ssh-copy-id -i .ssh/id_rsa.pub username@192.168.x.xxx
 
 ### 3.3 Remote server connection
 * ssh zzu8431@wolf.analytics.private
@@ -77,10 +79,14 @@ ant
 ### 3.4 SCP - secure copy
 * scp [OPTION] [user@]Local host: file1 [user@]Remote host: file2
 
-### 3.5 additional tutor
+### 3.5 Keep codes running on the server
+* nohup python -u model.py > log.out 2>&1 & # log.out is the log file
+
+### 3.6 Additional tutor
 * <https://meineke.github.io/workflows/>   # TA Session
 * <https://blog.csdn.net/xlgen157387/article/details/50282483>   # Server Config (Renaming)
 * <https://blog.csdn.net/liu_qingbo/article/details/78383892>   # SSH key config
+
 
 ## 4. Git
 ### 4.1 basic 
@@ -123,6 +129,8 @@ ant
 
 
 ## 6. Conda
-* conda/source activate xxxEnv
+* conda/source activate xxxEnv   # source适用于低版本
+* conda env list
+* conda env create -f Env.yml   # create env from file
 
 
