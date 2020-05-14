@@ -11,21 +11,24 @@
 Source: <https://www.cs.cmu.edu/~15131/f17/>
 
 ### 1.1 Command
-* ls / tree: -a 显示所有, a代表all; -l显示详细内容（权限）
+* ls / tree: -a 显示所有, a代表all; -l显示详细内容(权限)
 * cat / less <filename>: 显示文件内容; /banana表示查抄; 按q键退出
 * cp <source> <destination>: 拷贝文件
 * mv <source> <destination>: 移动文件
 * rm <filename>: 删除文件; rm -r folder2/ : 删除文件夹
-* mkdir <directory>: 建立路径（文件夹）
+* mkdir <directory>: 建立路径(文件夹)
 * touch <file>: 建立空文件
 * echo <text>: 打印文本
-* fg: foreground任务。例如fg 1; 用jobs查看当前任务。
+* fg/bg: foreground/background任务。例如fg 1(任务编号); 用jobs查看当前任务
+* w/who/whoami: w/who查看已登陆用户; whoami查看目前登陆用户
+* su: 切换用户; su -user; su root;
+* chown -R user:usergroup filename
 * chmod及权限: <https://www.cnblogs.com/peida/archive/2012/11/29/2794010.html>
 * vim: https://www.runoob.com/linux/linux-vim.html
 * |: 管道操作
 * grep(global reg ex print) / sed(stream editor): 正则表达式和自动文件操作
 * &gt;&gt;: append stdout; >: overwrite stdout; 2>, 2>>: stderr
-    - cat asdf hello.txt 2>&1 > alloutput.txt:把2句柄赋值传递给1句柄的地址（0是stdin, 1是stdout, 2是stderr）; 功能为把stderr发送到stdout, 然后把stdout发送到文件
+    - cat asdf hello.txt 2>&1 > alloutput.txt:把2句柄赋值传递给1句柄的地址(0是stdin, 1是stdout, 2是stderr); 功能为把stderr发送到stdout, 然后把stdout发送到文件
     - 2>&1 要写到后面: ls a 1>&2 2> b.txt; ls a > b.txt 2>&1
     - /dev/null: 不打印任何东西, 可以理解为垃圾桶位置
 * $: 把输出变成输入的一部分, 类比pipe; touch myfile-$(date +%s).txt
@@ -37,7 +40,6 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
     - export anothervar="some string”: 可被外部或者其他程序引用
     - permission: <https://www.cnblogs.com/peida/archive/2012/11/29/2794010.html>
 * {} 生成序列: mv {1.txt,2.txt}; mv Bash/2{.txt,}
-
 
 ## 2. Hadoop
 ### 2.1 hdfs
@@ -98,8 +100,8 @@ ant
 
 ### 4.2 branch
 * git checkout -b dev   # -b means create and switch to that branch (git branch dev; git checkout dev)
-* git branch   # check the branches
-* git push -u origin master; git push --set-upstream origin master: 如果当前分支与多个远程主机存在追踪关系, 那么git push --set-upstream origin master(git push -u origin master 省略形式)将本地的master分支推送到origin主机(--set-upstream选项会指定一个默认主机), 同时指定该主机为默认主机, 后面使用可以不加任何参数使用git push    
+* git branch; git branch -vv  # check the branches/and upstream branches; 
+* git push -u origin master; git push --set-upstream origin master: 如果当前分支与多个远程主机存在追踪关系, 那么git push --set-upstream origin master(git push -u origin master 省略形式)将本地的master分支推送到origin主机(--set-upstream选项会指定一个默认主机), 同时指定该主机为默认主机, 后面使用可以不加任何参数使用git push 
 
 ### 4.3 github
 * git push origin master
@@ -110,7 +112,7 @@ ant
 ## 5. Docker
 ### 5.1 Build the image
 * docker images   # 查看所有image
-* docker build -f app/Dockerfile -t pennylane .   # (创建一个tag为pennylane)的镜像  
+* docker build -f app/Dockerfile -t pennylane .   # (创建一个tag为pennylane)的镜像。最后的. 号，其实是在指定镜像构建过程中的上下文环境的目录    
 
 ### 5.2 Run the container  
 * docker run -p 5000:5000 --name test pennylane   # (创建并run一个name为test的容器)    
@@ -124,13 +126,19 @@ ant
 
 ### 5.4 Others 
 * docker ps -a   # 查看过去执行过的docker     
-* docker image/container rm name   # 删除镜像/容器    
+* docker image/container rm name   # 删除镜像/容器
+* docker rm $(docker ps -aq)   # 删除所有容器    
 * docker run -不同参数 <https://blog.csdn.net/qq_19381989/article/details/102781663>
 
 
 ## 6. Conda
-* conda/source activate xxxEnv   # source适用于低版本
+* conda/source activate xxx_env   # source适用于低版本, 退出用deactivate
 * conda env list
 * conda env create -f Env.yml   # create env from file
+* conda create -n spark python=3.7
+* conda remove -n spark --all
+* conda list   # 查看env下的包
+* python -m ipykernel install --user --name new_env # Add new env to the Jupyter kernal. This should be done in the activated new env.
+
 
 
