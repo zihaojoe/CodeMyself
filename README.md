@@ -31,7 +31,7 @@ Source: <https://www.cs.cmu.edu/~15131/f17/>
     - cat asdf hello.txt 2>&1 > alloutput.txt:把2句柄赋值传递给1句柄的地址(0是stdin, 1是stdout, 2是stderr); 功能为把stderr发送到stdout, 然后把stdout发送到文件
     - 2>&1 要写到后面: ls a 1>&2 2> b.txt; ls a > b.txt 2>&1
     - /dev/null: 不打印任何东西, 可以理解为垃圾桶位置
-* $: 把输出变成输入的一部分, 类比pipe; touch myfile-$(date +%s).txt
+* $: 理解为“执行”。1. 引用环境变量如$VAR,${VAR}。 2. $(pwd):把()内返回值整体的值, 类比pipe; touch myfile-$(date +%s).txt。
 * make
 
 ### 1.2 Points
