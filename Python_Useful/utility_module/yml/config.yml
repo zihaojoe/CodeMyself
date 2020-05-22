@@ -1,0 +1,80 @@
+data_raw_url: "https://archive.ics.uci.edu/ml/machine-learning-databases/undocumented/taylor/cloud.data"
+data_raw_sav_path: "./clouds.data"
+data_load_sav_path: "./clouds.csv"
+data_engineer_sav_path: "./clouds_engineered.csv"
+
+mpl_update:
+    font.size: 16 
+    axes.prop_cycle:
+        - "#0085ca"
+        - "#888b8d"
+        - "#00c389"
+        - "#f4364c"
+        - "#e56db1"
+    xtick.labelsize: 14
+    ytick.labelsize: 14
+    figure.figsize:
+        - 12.0
+        - 8.0
+    axes.labelsize: 20
+    axes.labelcolor: "#677385"
+    axes.titlesize: 20
+    lines.color: "#0055A7"
+    lines.linewidth: 3
+    text.color: "#677385"
+    font.family: "sans-serif"
+    font.sans-serif: "Tahoma"
+
+columns:
+    - "visible_mean"
+    - "visible_max"
+    - "visible_min"
+    - "visible_mean_distribution"
+    - "visible_contrast"
+    - "visible_entropy"
+    - "visible_second_angular_momentum"
+    - "IR_mean"
+    - "IR_max"
+    - "IR_min"
+
+feature_columns:
+    - "visible_norm_range"
+    - "log_entropy"
+    - "IR_mean"
+    - "entropy_x_contrast"
+    - "IR_norm_range"
+    - "visible_mean"
+   
+dataloc:
+    data_0:
+        start_ix: 53
+        end_ix: 1078
+    data_1:
+        start_ix: 1082
+        end_ix: 2106
+        
+model_params:
+    C: 1.0
+    penalty: 'l2'
+    class_weight: Null
+    dual: False
+    fit_intercept: False
+    intercept_scaling: 1
+    l1_ratio: Null
+    max_iter: 100
+    multi_class: 'auto'
+    random_state: Null
+    solver: 'lbfgs'
+    tol: 0.0001
+    verbose: 0
+    warm_start: False
+    n_jobs: Null
+
+train_test_split_params:
+    test_size: 0.4
+    random_state: Null
+    shuffle: True
+    stratify: Null
+
+report_test_performance: True
+report_feature_importance: True

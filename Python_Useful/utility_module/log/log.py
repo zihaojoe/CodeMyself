@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# log
 import logging
 import logging.config
 #logging.basicConfig(level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
